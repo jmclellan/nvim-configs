@@ -14,6 +14,13 @@ set cc=120                  " set an 80 column border for good coding style
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 
+" ensure that plug is here by installing if it is not
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 " dont remember what ployglot is meant to do
 Plug 'sheerun/vim-polyglot'
@@ -24,7 +31,7 @@ Plug 'neovim/nvim-lspconfig'
 " autocompletion
 Plug 'hrsh7th/nvim-cmp'
 " fzf
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 
