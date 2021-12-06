@@ -132,12 +132,27 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- Modules and its options go here
   highlight = { enable = true },
-  incremental_selection = { enable = true },
+  incremental_selection = { enable = true,
+                            keymaps = {
+                              init_selection = "gnn",
+                              node_incremental = "grn",
+                              scope_incremental = "grc",
+                              node_decremental = "grm",
+                        },
+  },
   textobjects = { enable = true },
 }
 EOF
 
-
+" =============================================================================
+"                               fzf
+" =============================================================================
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R --exclude=.venv'
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" Highlighting in preview
+let $FZF_DEFAULT_OPTS = "--layout=reverse --info=inline --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 " =============================================================================
 "                            Pendings 
@@ -147,10 +162,17 @@ let mapleader=" "
 nnoremap <Space> <Nop>
 
 let g:fzf_command_prefix = 'Fzf'
-" I want to bind all the fuzzy searching to s+ some key for all the different searching and i dont know how to do that
-nnoremap <leader>e          :FzfFiles<CR> 
-nnoremap <leader>b          :FzfBuffers<CR>
-nnoremap <leader>g          :FzfGitFiles<CR>
-nnoremap <leader>t          :FzfTags<CR>     
-nnoremap <leader>d          :FzfRg<CR>   
-nnoremap <leader>c          :FzfCommits
+"nnoremap <leader>f          :FzfFiles<CR> 
+"nnoremap <leader>b          :FzfBuffers<CR>
+"nnoremap <leader>g          :FzfGitFiles<CR>
+"nnoremap <leader>t          :FzfTags<CR>     
+"nnoremap <leader>r          :FzfRg<CR>   
+"nnoremap <leader>c          :FzfCommits<CR>
+nnoremap sf :FzfFiles<CR>
+nnoremap sb :FzfBuffers<CR>
+nnoremap sg :FzfGitFiles<CR>
+nnoremap st :FzfTags<CR>
+nnoremap sr :FzfRg<CR>
+nnoremap sc :FzfCommits<CR>
+
+
