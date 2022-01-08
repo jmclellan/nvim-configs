@@ -42,8 +42,14 @@ Plug 'preservim/nerdtree' " this is a crutch and we should probably be using net
 Plug 'folke/which-key.nvim'   " ill remove this once i feel less like a beginner
 
 Plug 'mhinz/vim-signify'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug ‘tpope/vim-commentary’
+Plug ‘tpope/vim-surround’
+Plug ‘tpope/vim-sensible’
+
+
 Plug 'junegunn/gv.vim'
 " setting up slime
 Plug 'jpalardy/vim-slime'
